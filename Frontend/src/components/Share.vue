@@ -112,6 +112,7 @@ export default {
         }
       } catch (error) {
         console.error('Error sending email:', error);
+        alert("Enter a valid email Id")
       }
     };
 

@@ -3,7 +3,7 @@
     <div class="p-8 bg-white rounded-xl shadow-lg w-full max-w-md">
       <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">Sign In</h2>
 
-      <form @submit.prevent="submitSignIn" class="space-y-6">
+      <form @submit.prevent="submitSignIn" v-if="!isLoggedIn" class="space-y-6">
         <div>
           <input
             v-model="username"
@@ -32,7 +32,12 @@
         </button>
       </form>
 
-      <p class="mt-4 text-center text-gray-600">
+      <!-- If logged in, show logout button -->
+      <p v-if="isLoggedIn" class="mt-4 text-center text-gray-600">
+        Welcome back!
+      </p>
+
+      <p v-if="!isLoggedIn" class="mt-4 text-center text-gray-600">
         Don't have an account?
         <router-link to="/signup" class="text-green-600 hover:underline">Sign Up</router-link>
       </p>
@@ -57,12 +62,12 @@ export default {
     return {
       username: '',
       password: '',
-      isLoggedIn: false, // Start as false, and update based on token presence
     };
   },
-  created() {
-    // Check if the user is already logged in by verifying the access token
-    this.isLoggedIn = !!localStorage.getItem('access_token');
+  computed: {
+    isLoggedIn() {
+      return !!localStorage.getItem('access_token');
+    },
   },
   methods: {
     // Handle Sign In
@@ -75,8 +80,8 @@ export default {
         const { access, refresh } = response.data;
         localStorage.setItem('access_token', access);
         localStorage.setItem('refresh_token', refresh);
-        this.isLoggedIn = true; // Update the login state
         this.$router.push('/'); // Redirect to Dashboard after successful login
+        alert('Successfully Logged In');
       } catch (error) {
         console.error(error.response);
         alert('Error during sign in');
@@ -97,9 +102,6 @@ export default {
       // Clear tokens from localStorage
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
-
-      // Manually update the reactive variable
-      this.isLoggedIn = false;
 
       // Redirect to login page
       this.$router.push('/signin');

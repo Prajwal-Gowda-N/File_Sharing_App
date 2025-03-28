@@ -25,6 +25,7 @@
   import { ref } from 'vue'
   import axios from 'axios'
   
+  alert("You can only select Word File, Pdf File,Text File")
   // Reactive state variables
   const fileInput = ref(null)
   const summary = ref(null)

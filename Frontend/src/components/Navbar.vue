@@ -1,15 +1,17 @@
 <template>
-  <nav class="bg-green-800 p-4 shadow-md">
+  <nav class="bg-gradient-to-r from-green-700 via-green-800 to-green-900 p-4 shadow-md hover:bg-gradient-to-r hover:from-green-600 hover:via-green-700 hover:to-green-800 transition-all duration-300">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-white text-2xl font-bold">File Sharing App</h1>
+      <h1 class="text-white text-2xl font-bold cursor-pointer hover:text-green-200 transition-all duration-300">File Sharing App</h1>
       <ul class="flex space-x-8">
-        <li v-for="(item, index) in menuItems" :key="index">
+        <li v-for="(item, index) in menuItems" :key="index" class="relative group">
           <RouterLink
             :to="item.link"
             @click.prevent="item.action ? item.action() : null"
-            class="text-white hover:text-green-200 text-lg px-4 py-2"
+            class="text-white hover:text-green-200 text-lg px-4 py-2 transition-all duration-200"
           >
-            {{ item.name }}
+            <span>{{ item.name }}</span>
+            <!-- Hover underline animation -->
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-200 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
           </RouterLink>
         </li>
       </ul>
@@ -83,7 +85,19 @@ watchEffect(() => {
 </script>
 
 <style scoped>
+/* Navigation bar background and hover effect */
 nav {
   transition: background-color 0.3s ease;
+}
+
+/* Link hover effect */
+nav ul li a:hover {
+  transform: translateY(-3px);
+  text-decoration: none;
+}
+
+/* Smooth transition on logo hover */
+h1:hover {
+  transform: scale(1.05);
 }
 </style>
