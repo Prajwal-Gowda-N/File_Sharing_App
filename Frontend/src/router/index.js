@@ -5,6 +5,7 @@ import Filetransfer from '@/views/Filetransfer.vue'
 import SummerizerView from '@/views/SummerizerView.vue'
 import Signupview from '@/views/Signupview.vue'
 import LoginView from '@/views/LoginView.vue'
+import Essay from '@/components/Essay.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -45,6 +46,12 @@ const router = createRouter({
       path: '/signin',
       name: 'SignIn',
       component: LoginView
+    },
+    {
+      path: '/essay',
+      name: 'Essay',
+      component: Essay,
+      meta: { requiresAuth: true }
     },
     { path: '/', redirect: '/signin' }
   ],

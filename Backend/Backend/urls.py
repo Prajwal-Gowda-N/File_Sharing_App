@@ -29,5 +29,6 @@ urlpatterns = [
       path('api/signup/', SignUpView.as_view(), name='signup'),
     path('api/signin/', SignInView.as_view(), name='signin'),
     path('api/logout/', logout, name='logout'),
+    path('api/generate-word/', GenerateWordDocument.as_view(), name='generate-word'),
     path('admin/', admin.site.urls),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

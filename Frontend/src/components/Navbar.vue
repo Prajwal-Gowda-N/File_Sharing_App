@@ -43,6 +43,7 @@ const updateMenuItems = () => {
       { name: 'Share', link: '/share' },
       { name: 'Summarize', link: '/summarize' },
       { name: 'Convert', link: '/convert' },
+      { name: 'EssayWriting', link: '/essay' },
       { name: 'Logout', link: '/#', action: logout }, // Attach logout action here
     ];
   } else {
@@ -51,6 +52,7 @@ const updateMenuItems = () => {
       { name: 'Share', link: '/share' },
       { name: 'Summarize', link: '/summarize' },
       { name: 'Convert', link: '/convert' },
+      { name: 'EssayWriting', link: '/essay' },
       { name: 'Login', link: '/signin' },
     ];
   }

@@ -199,3 +199,33 @@ def logout(request):
 
     return Response({"message": "Logged out successfully"}, status=status.HTTP_200_OK)
 
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from io import BytesIO
+from django.http import HttpResponse
+from docx import Document
+
+class GenerateWordDocument(APIView):
+    def post(self, request, *args, **kwargs):
+        content = request.data.get('content')
+        title = request.data.get('title', 'Document')  # Default title if not provided
+
+        if not content:
+            return Response({"error": "Content is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create a Word document
+        doc = Document()
+        doc.add_heading(title, 0)  # Add the title at the top
+        doc.add_paragraph(content)  # Add the content
+
+        # Save the document to a BytesIO object (in memory)
+        doc_io = BytesIO()
+        doc.save(doc_io)
+        doc_io.seek(0)
+
+        # Create a response that prompts the user to download the file
+        response = HttpResponse(doc_io, content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+        response['Content-Disposition'] = f'attachment; filename="{title}.docx"'
+        return response

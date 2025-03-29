@@ -49,6 +49,20 @@
           </div>
         </div>
       </div>
+      <div class="flex justify-center mb-12 animate-on-scroll">
+        <div class="card bg-white shadow-md rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 w-1/2 md:w-1/2">
+          <div class="flex">
+            <div class="relative w-1/2">
+              <img src="C:\Users\win10\Desktop\File_Sharing_Application\Frontend\src\assets\AI image for essay writing.png" alt="File Conversion" class="w-full h-80 object-cover"/>
+            </div>
+            <div class="p-4 w-1/2">
+              <h2 class="text-xl font-semibold text-gray-800 mb-4">Essay Writting</h2>
+              <p class="text-gray-600 mb-4">Submit your content, and let us convert it into a polished Word document for you</p>
+              <RouterLink to="/essay" class="text-purple-600 hover:underline">Learn More</RouterLink>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
